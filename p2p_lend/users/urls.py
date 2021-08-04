@@ -1,6 +1,6 @@
 from django.urls import path
 
-from peer_lending.users.views import (
+from p2p_lend.users.views import (
     user_detail_view,
     user_redirect_view,
     user_update_view,

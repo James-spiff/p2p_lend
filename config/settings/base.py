@@ -6,8 +6,8 @@ from pathlib import Path
 import environ
 
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
-# peer_lending/
-APPS_DIR = ROOT_DIR / "peer_lending"
+# p2p_lend/
+APPS_DIR = ROOT_DIR / "p2p_lend"
 env = environ.Env()
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
@@ -42,7 +42,13 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    "default": env.db("DATABASE_URL", default="postgres:///peer_lending_starter"),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'p2plend',
+        'USER': 'postgres',
+        'PASSWORD': 'Domo',
+        'HOST': 'localhost',
+    }
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
@@ -77,7 +83,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "peer_lending.users.apps.UsersConfig",
+    "p2p_lend.users.apps.UsersConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -86,7 +92,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # MIGRATIONS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
-MIGRATION_MODULES = {"sites": "peer_lending.contrib.sites.migrations"}
+MIGRATION_MODULES = {"sites": "p2p_lend.contrib.sites.migrations"}
 
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
@@ -186,7 +192,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                "peer_lending.utils.context_processors.settings_context",
+                "p2p_lend.utils.context_processors.settings_context",
             ],
         },
     }
@@ -265,30 +271,30 @@ ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 3
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
-ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = False
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-ACCOUNT_MAX_EMAIL_ADDRESSES = 3
+ACCOUNT_MAX_EMAIL_ADDRESSES = 1
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
-ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_LOGOUT_ON_GET = True  #False
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 ACCOUNT_UNIQUE_EMAIL = True
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_ADAPTER = "peer_lending.users.adapters.AccountAdapter"
+ACCOUNT_ADAPTER = "p2p_lend.users.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-SOCIALACCOUNT_ADAPTER = "peer_lending.users.adapters.SocialAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "p2p_lend.users.adapters.SocialAccountAdapter"
 
 # ACCOUNT_FORMS = (
-#     {'signup': 'peer_lending.users.forms.CustomSignupForm'}
+#     {'signup': 'p2p_lend.users.forms.CustomSignupForm'}
 # )
 # django-compressor
 # ------------------------------------------------------------------------------
