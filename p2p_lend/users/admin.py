@@ -9,7 +9,7 @@ User = get_user_model()
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('first_name', 'last_name')
 
 # @admin.register(User)
 # class UserAdmin(auth_admin.UserAdmin):

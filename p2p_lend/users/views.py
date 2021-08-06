@@ -11,7 +11,7 @@ User = get_user_model()
 class UserDetailView(LoginRequiredMixin, DetailView):
 
     model = User
-    slug_field = "pk"
+    slug_field = "pk"  #pk is the uuid generated userid
     slug_url_kwarg = "username"
 
 

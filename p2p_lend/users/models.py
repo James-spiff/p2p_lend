@@ -56,12 +56,12 @@ class User(AbstractUser):
         )
 
     #: First and last name do not cover name patterns around the globe
-    objects = UserManager()
+    objects = UserManager()  #remember to register the UserManager to avoid errors
 
     name = CharField(_("Name of User"), blank=True, max_length=255)
-    username = None
+    username = None #we use our email address to login instead of username
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     id = models.UUIDField(
         primary_key=True,
@@ -82,9 +82,9 @@ class User(AbstractUser):
         blank=True, null=True,
         help_text=_("Legal Last names of the client."))
 
-    email = models.CharField(
+    email = models.EmailField(
         verbose_name=_('Email Address'),
-        max_length=125,
+        max_length=150,
         unique=True,
         help_text=_("Email address of the client."))
 

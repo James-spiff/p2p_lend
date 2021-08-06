@@ -286,6 +286,8 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_SIGNUP_FORM_CLASS = 'p2p_lend.users.forms.CustomSignupForm'
+
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
