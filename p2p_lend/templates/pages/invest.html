@@ -1,67 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block content %}
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="shortcut icon" href="assets/images/favicon.png">
-        <title>Invest | P2P</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/os-lib.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
- 
-  </head>
-<body>
-
-<header class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="logo"><img src="assets/images/logo.svg" alt=""></div>
-                </div>
-
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="drplst">
-                        <ul>
-                            <li><a href="javascript:;">Borrow</a>
-                                <ul>
-                                    <li><a href="javascript:;">how it work</a></li>
-                                    <li><a href="javascript:;">loan types</a></li>
-                                    <li><a href="javascript:;">check your rate</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="javascript:;">Invest
-
-                                <ul>
-                                    <li><a href="javascript:;">how it work</a></li>
-                                    <li><a href="javascript:;">benefits</a></li>
-                                    <li><a href="javascript:;">get started</a></li>
-                                </ul>
-                            </a></li>
-                        </ul>
-                    </div>
-
-                </div>
-
-                <div class="col-md-4 col-sm-4 col-xs-12 text-right">
-                    
-                   
-                        <div class="navi">
-                            <ul>
-                                <li><a href="javascript:;">about us</a></li>
-                                <li><a href="javascript:;">admin </a></li>
-                                <li><a href="javascript:;">Sign in</a></li>
-                            </ul>
-                        </div>
-                    
-                </div>
-            </div>
-        </div>
-    </header>
+{% include 'pages/partials/header.html' %}
     
     <section class="main-baner">
         <div class="container">
@@ -90,10 +32,10 @@
         <div class="container">
             <div class="clientbx">
                 <ul>
-                    <li><img src="assets/images/reuters.svg" alt="">   </li>
-                    <li><img src="assets/images/bloomberg.svg" alt="">   </li>
-                    <li><img src="assets/images/npr.svg" alt="">   </li>
-                    <li><img src="assets/images/nbc.svg" alt="">   </li>
+                    <li><img src="{% static 'frontend/assets/images/reuters.svg' %}" alt="">   </li>
+                    <li><img src="{% static 'frontend/assets/images/bloomberg.svg' %}" alt="">   </li>
+                    <li><img src="{% static 'frontend/assets/images/npr.svg' %}" alt="">   </li>
+                    <li><img src="{% static 'frontend/assets/images/nbc.svg' %}" alt="">   </li>
                 </ul>
             </div> 
         </div>
@@ -107,7 +49,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="bx1">
                     <div class="imbx">
-                        <img src="assets/images/approval.svg" alt="">
+                        <img src="{% static 'frontend/assets/images/approval.svg' %}" alt="">
                     </div>
                     <h5>Creditworthy Borrowers</h5>
                     <p>Browse several loan listings from approved creditworthy borrowers on Lendy</p>
@@ -117,7 +59,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="bx1">
                     <div class="imbx">
-                        <img src="assets/images/wallet.svg" alt="">
+                        <img src="{% static 'frontend/assets/images/wallet.svg' %}" alt="">
                     </div>
                     <h5>Earn up to 6.5% p.a</h5>
                     <p>Earn 4% - 6.5% per annum over 5 years and 3% - 5.0% per annum over 3 years with Lendy</p>
@@ -127,7 +69,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="bx1">
                     <div class="imbx">
-                        <img src="assets/images/dollar.svg" alt="">
+                        <img src="{% static 'frontend/assets/images/dollar.svg' %}" alt="">
                     </div>
                     <h5>Diversify your portfolio</h5>
                     <p>Diversify your Lendy portfolio by investing in different loans and borrowers</p>
@@ -183,7 +125,7 @@
     </div>
 
     <div class="gtl-imbx">
-         <img class="img-responsive" src="assets/images/ritim.jpg" alt="">
+         <img class="img-responsive" src="{% static 'frontend/assets/images/ritim.jpg' %}" alt="">
     </div>
 </section> <!-- main-getloan End -->
 
@@ -211,7 +153,7 @@
                     <div class="user">
                     <div class="media">
                       <div class="media-left">
-                        <img src="assets/images/user.jpg" alt="">
+                        <img src="{% static 'frontend/assets/images/user.jpg' %}" alt="">
                       </div>
                       <div class="media-body">
                         <h4 class="media-heading">Hannah Maxwell</h4>
@@ -228,7 +170,7 @@
                     <div class="user">
                     <div class="media">
                       <div class="media-left">
-                        <img src="assets/images/user.jpg" alt="">
+                        <img src="{% static 'frontend/assets/images/user.jpg' %}" alt="">
                       </div>
                       <div class="media-body">
                         <h4 class="media-heading">Hannah Maxwell</h4>
@@ -245,7 +187,7 @@
                     <div class="user">
                     <div class="media">
                       <div class="media-left">
-                        <img src="assets/images/user.jpg" alt="">
+                        <img src="{% static 'frontend/assets/images/user.jpg' %}" alt="">
                       </div>
                       <div class="media-body">
                         <h4 class="media-heading">Hannah Maxwell</h4>
@@ -265,90 +207,12 @@
         <div class="gtt-text">
             <h2>We want to help you succeed</h2>
             <h3>Get your rate in just 2 minutes — it won't affect your<br>credit score!</h3>
-            <a href="javascript:;">get started now</a>
+            <a href="#">get started now</a>
         </div>
     </div>
 </section> <!-- main-getstart End -->
 
 
-<footer class="main-footer">
-    
-    <div class="container">
-        <div class="row">
-        <div class="col-md-3 col-sm-3 col-xs-12">
-            <div class="ft-lst">
-                <h5>borrow</h5>
-                <ul>
-                    <li><a href="javascript:;">How it Work</a></li>
-                    <li><a href="javascript:;">Loan Types</a></li>
-                    <li><a href="javascript:;">Check Your Rates</a></li>
+{% include 'pages/partials/footer.html' %}
 
-                </ul>
-            </div>
-            
-        </div>
-        <div class="col-md-2 col-sm-2 col-xs-12">
-            <div class="ft-lst">
-                <h5>invest</h5>
-                <ul>
-                    <li><a href="javascript:;">How it Work</a></li>
-                    <li><a href="javascript:;">Benefits</a></li>
-                    <li><a href="javascript:;">Get Started</a></li>
-
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-2 col-sm-2 col-xs-12">
-            <div class="ft-lst">
-                <h5>company</h5>
-                <ul>
-                    <li><a href="javascript:;">About</a></li>
-                    <li><a href="javascript:;">Team</a></li>
-                    <li><a href="javascript:;">press</a></li>
-
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-5 col-sm-5 col-xs-12">
-            <div class="ft-abt">
-                <div class="ftloga"><img src="assets/images/ft-logo.svg" alt=""></div>
-                <p>Since 2009, we've helped 180 thousand people achieve<br> greater financial wellness, and that number is growing.</p>
-                <div class="social-bx">
-                    <ul>
-                        <li><a href="javascript:;"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
-                        <li><a href="javascript:;"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="javascript:;"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="copyrit">
-        <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <p>Copyright © 2009 - 2020 Lendy, Inc. All rights reserved.</p>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="trm-lst">
-                    <ul>
-                        <li><a href="javascript:;">Term of Use</a></li>
-                        <li><a href="javascript:;">Privacy Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <p class="ft-para">
-         3.77% - 8.03% average historical returns for loan grades A through E originated from January 2010 through March 2017. Because the likelihood of a loan charging off increases over time, historical returns include only those loans that were issued 18 months or more before the last day of the most recently completed quarter. The range in returns represents 10th and 90th percentile performance as illustrated here, for the period January 2010 through September 2018. The return is weighted based on platform issuance by grade. Historical Returns are Lendy's adjusted net annualized returns ("ANAR"). ANAR is calculated using the formula described here.</p>
-    </div> <!-- container End -->
-
-
- <script type="text/javascript" src="assets/js/lib.js"></script> 
- <script type="text/javascript" src="assets/js/functions.js"></script>
- <script type="text/javascript" src="assets/js/wow.js"></script>
-</footer> <!-- footer End -->
-
-  </body>
-</html> 
+{% endblock %}
