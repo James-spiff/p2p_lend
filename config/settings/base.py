@@ -85,6 +85,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "p2p_lend.users.apps.UsersConfig",
+    "locations.apps.LocationsConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
