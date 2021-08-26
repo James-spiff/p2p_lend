@@ -125,13 +125,17 @@ class User(AbstractUser):
         ('verified', _('Verified')),
         ('action_required', _('Action Required')),
         ('cancelled', _('Cancelled')),
-        ('rejected', _('Rejected')),
+        ('rejected', _('Rejected'))
+        )
+
+    ACCOUNT_TYPE = (
+        ('borrower', _('Borrower')),
+        ('investor', _('Investor'))
         )
 
     #: First and last name do not cover name patterns around the globe
     objects = UserManager()  #remember to register the UserManager to avoid errors
 
-    name = CharField(_("Name of User"), blank=True, max_length=255)
     username = None #we use our email address to login instead of username
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
@@ -142,6 +146,16 @@ class User(AbstractUser):
         editable=False,
         help_text=_("""The unique identifier of the instance this object belongs to.
                     Mandatory, unless a new instance to create is given."""))
+
+    name = CharField(_("Name of User"), blank=True, max_length=255)
+
+    account_type = models.CharField(
+        verbose_name=_('Account type'),
+        choices=ACCOUNT_TYPE,
+        max_length=10,
+        default='borrower',
+        blank=True, null=True,
+        help_text=_("The account type of the user."))
 
     first_name = models.CharField(
         verbose_name=_('First names'),

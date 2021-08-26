@@ -3,8 +3,13 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 #from allauth.account.forms import SignupForm
 from django import forms
+from locations.models import Country
 
 User = get_user_model()
+
+"""Check base.py django_allauth for other signup details e.g password field"""
+#the password field can be added manually but cookiecutter already provides it for us in our base.py although it can be overwritten if needed
+
 
 
 # class UserChangeForm(admin_forms.UserChangeForm):
@@ -48,16 +53,16 @@ User = get_user_model()
 
 ############################################################################
 
-# ACCOUNT_TYPE = (
-#     ('borrower', _('Borrower')),
-#     ('investor', _('Investor')),
-# )
+ACCOUNT_TYPE = (
+    ('borrower', _('Borrower')),
+    ('investor', _('Investor')),
+)
 
 
 class CustomSignupForm(forms.Form):
-    # account_type = forms.ChoiceField(
-    #     choices=ACCOUNT_TYPE,
-    #     help_text=_("Choose the type of account."))
+    account_type = forms.ChoiceField(
+        choices=ACCOUNT_TYPE,
+        help_text=_("Choose the type of account."))
 
     first_name = forms.CharField(max_length=50, label='First Names')
 
@@ -65,10 +70,10 @@ class CustomSignupForm(forms.Form):
 
     email = forms.CharField(max_length=30, label='')
 
-    # country = forms.ModelChoiceField(
-    #     queryset=Country.objects.filter(accept_signup=True).order_by('name'),
-    #     empty_label=_('Country of Residence'),
-    #     help_text=_('A proof of residence will be required.'))
+    country_of_residence = forms.ModelChoiceField(
+        queryset=Country.objects.filter(accept_signup=True).order_by('name'),   #accept_signup=True only displays countries that are not banned as choices for signup. banned=True will do the opposite and display only banned countries
+        empty_label=_('Country of Residence'),
+        help_text=_('A proof of residence will be required.'))
 
     def __init__(self, *args, **kwargs):
         super(CustomSignupForm, self).__init__(*args, **kwargs)
@@ -103,8 +108,8 @@ class CustomSignupForm(forms.Form):
         # client_ip, is_routable = get_client_ip(request)
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
-        # user.country = self.cleaned_data['country']
-        # user.account_type = self.cleaned_data['account_type']
+        user.country_of_residence = self.cleaned_data['country_of_residence']
+        user.account_type = self.cleaned_data['account_type']
         user.name = self.cleaned_data['first_name'] + " " + self.cleaned_data['last_name']
         # user.registered_ip_address = client_ip
         # user.groups.add(group)
