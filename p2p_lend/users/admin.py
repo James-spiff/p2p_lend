@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
+from .models import UserAddress
 
 
 User = get_user_model()
@@ -35,3 +36,9 @@ class UserAdmin(admin.ModelAdmin):
 #     )
 #     list_display = ["username", "name", "is_superuser"]
 #     search_fields = ["name"]
+
+
+@admin.register(UserAddress)
+class UserAddressAdmin(admin.ModelAdmin):
+    list_display = ('user', 'address_line_1', 'address_line_2', 'state', 'city', 'zip_post_code', 'country')
+    list_display_links = ('user', 'address_line_1', 'address_line_2', 'state', 'city', 'zip_post_code', 'country')

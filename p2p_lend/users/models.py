@@ -10,6 +10,13 @@ from locations.models import Country, State, City
 
 class UserAddress(models.Model):
 
+    #Choices
+    ADDRESS_TYPE = (
+        ('current', _('Current Address')),
+        ('permanent', _('Permanent Address'))
+        )
+
+
     #Gives our address a unique id
     id = models.UUIDField(
         primary_key=True,
@@ -18,22 +25,29 @@ class UserAddress(models.Model):
         help_text=_("""The unique identifier of the instance this object belongs to.
                     Mandatory, unless a new instance to create is given."""))
 
+    type = models.CharField(
+        choices=ADDRESS_TYPE,
+        max_length=10,
+        default='current',
+        verbose_name=_('Address type'),
+        help_text=_('The type of address'))
+
     user = models.ForeignKey(
         'User',
         on_delete=models.PROTECT,
         verbose_name=_('User'),
-        help_text=_('The user that owns the adress'))
+        help_text=_('The user that owns the address'))
 
     address_line_1 = models.CharField(
         max_length=125,
-        verbose_name=_('Adress line 1'),
-        help_text=_('Adress line 1 of the user'))
+        verbose_name=_('address line 1'),
+        help_text=_('address line 1 of the user'))
 
     address_line_2 = models.CharField(
         max_length=125,
-        verbose_name=_('Adress line 2'),
+        verbose_name=_('address line 2'),
         blank=True, null=True,
-        help_text=_('Adress line 2 of the user'))
+        help_text=_('address line 2 of the user'))
 
     state = models.ForeignKey(
         State,
@@ -59,11 +73,11 @@ class UserAddress(models.Model):
         help_text=_('Country of residence'))
 
     class Meta:
-        verbose_name=_('User Adress')
-        verbose_name_plural=_('User Adresses')
+        verbose_name=_('User address')
+        verbose_name_plural=_('User addresses')
 
     def __str__(self):
-        return self.name
+        return self.user.first_name
 
 
 
@@ -147,21 +161,21 @@ class User(AbstractUser):
         unique=True,
         help_text=_("Email address of the client."))
 
-    current_adress = models.ForeignKey(
+    current_address = models.ForeignKey(
         UserAddress,
         on_delete=models.PROTECT,
-        verbose_name=_('Current Adress'),
+        verbose_name=_('Current address'),
         blank=True, null=True,
         related_name='+', #this stops it from clashing with permanent address
-        help_text=_("Current adress of the client."))
+        help_text=_("Current address of the client."))
 
-    permanent_adress = models.ForeignKey(
+    permanent_address = models.ForeignKey(
         UserAddress,
         on_delete=models.PROTECT,
-        verbose_name=_('Permanent Adress'),
+        verbose_name=_('Permanent address'),
         blank=True, null=True,
         related_name='+',
-        help_text=_("Permanent adress of the client."))
+        help_text=_("Permanent address of the client."))
 
     contact_number = models.CharField(
         verbose_name=_('Contact Number'),
