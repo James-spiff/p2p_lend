@@ -88,6 +88,7 @@ LOCAL_APPS = [
     "frontend.apps.FrontendConfig",
     "locations.apps.LocationsConfig",
     "frontend_pages.apps.FrontendPagesConfig",
+    "helpers.apps.HelpersConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

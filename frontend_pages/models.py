@@ -1,8 +1,10 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from helpers.common.basemodel import BaseModel
 
-# Create your models here.
-class TeamMember(models.Model):
+
+#BaseModel is an abstract model created in helpers/common/basemodels.py
+class TeamMember(BaseModel):
 
 	name = models.CharField(
 		max_length=125,
@@ -21,6 +23,13 @@ class TeamMember(models.Model):
 		blank=True, null=True,
 		help_text=_('LinkedIn URL'),
 		verbose_name=_('LinkedIn handle')
+		)
+
+	photo = models.ImageField(
+		verbose_name=_('Photo'),
+		upload_to='team',
+		blank=True, null=True,
+		help_text=_('Photo of the team member')
 		)
 
 
