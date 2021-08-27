@@ -68,6 +68,7 @@ DJANGO_APPS = [
     "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "jazzmin", #This package let's you change the look of the django admin panel --pip install django-jazzmin--
     # "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
     "django.forms",
