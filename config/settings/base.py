@@ -72,7 +72,6 @@ DJANGO_APPS = [
     # "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
     "django.forms",
-    "frontend.apps.FrontendConfig",
 ]
 THIRD_PARTY_APPS = [
     "crispy_forms",
@@ -86,7 +85,9 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "p2p_lend.users.apps.UsersConfig",
+    "frontend.apps.FrontendConfig",
     "locations.apps.LocationsConfig",
+    "frontend_pages.apps.FrontendPagesConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
