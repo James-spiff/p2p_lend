@@ -60,15 +60,18 @@
         <p>Lendy was founded by a well experienced team with a combined<br>experience of over 25 years in the financial services industry.</p>
         
         <div class="row">
+            {% for team in team_members %}
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="team">
-                    <img src="{% static 'frontend/assets/images/team1.jpg' %}" alt="">
-                    <h6>Alicia Goodwin</h6>
-                    <p>CEO & Co-Founder</p>
+                    <img src="{% static 'team.photo' %}" alt="">
+                    <h6>{{team.name}}</h6>
+                    <p>{{team.designation}}</p>
                 </div>
             </div>
+            {% endfor %}
 
-            <div class="col-md-4 col-sm-4 col-xs-12">
+
+            <!-- <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="team">
                     <img src="{% static 'frontend/assets/images/team2.jpg' %}" alt="">
                     <h6>James Paul</h6>
@@ -98,7 +101,7 @@
                     <h6>Frank Wells</h6>
                     <p>Head of Marketing</p>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

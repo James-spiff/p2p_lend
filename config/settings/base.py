@@ -87,7 +87,6 @@ LOCAL_APPS = [
     "p2p_lend.users.apps.UsersConfig",
     "frontend.apps.FrontendConfig",
     "locations.apps.LocationsConfig",
-    "frontend_pages.apps.FrontendPagesConfig",
     "helpers.apps.HelpersConfig",
     # Your stuff: custom apps go here
 ]

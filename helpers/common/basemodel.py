@@ -16,12 +16,14 @@ class BaseModel(models.Model):
 	created_date = models.DateTimeField(
 		verbose_name=_('Date created'),
 		default=timezone.now,
+		editable=False,
 		help_text=_('Timestamp when the record was created')
 		)
 
 	modified_date = models.DateTimeField(
 		verbose_name=_('Date Modified'),
 		default=timezone.now,
+		editable=False,
 		help_text=_('Timestamp when the record was modified')
 		)
 
