@@ -63,7 +63,7 @@
             {% for team in team_members %}
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="team">
-                    <img src="{% static 'team.photo' %}" alt="">
+                    <img src="{{team.photo.url}}" alt="{{team.name}}">
                     <h6>{{team.name}}</h6>
                     <p>{{team.designation}}</p>
                 </div>
