@@ -6,6 +6,7 @@ from p2p_lend.users.models import User, UserAddress
 from locations.models import Country, State, City
 from django.utils import timezone
 from datetime import datetime
+from solo.models import SingletonModel
 
 
 
@@ -312,3 +313,66 @@ class KYCApplication(BaseModel):
 	# 		}
 	# 			)
 	
+
+class KYCSetting(SingletonModel):
+	#This model represents KYC settings and configs
+
+	#Choices
+	#Setting for if a user wants to use the manual or automatic KYC verification
+	MANUAL = 'manual'  #Uses a KYC form that is filled and reviewed by a KYC staff
+	AUTOMATIC = 'automatic'	#Uses an api service gotten from a KYC provider to complete the process
+
+	KYC_SYSTEM_TYPE = (
+		(MANUAL, _('Manual KYC')),
+		(AUTOMATIC, _('Automatic KYC'))
+		)
+
+	singleton_instance_id = 1 
+
+	enable_kyc = models.BooleanField(
+		default=True,
+		verbose_name=_('Enable KYC Verification'),
+		help_text=_('Activates or Deactivates KYC application on the system'))
+
+	allow_resubmission = models.BooleanField(
+		default=False,
+		verbose_name=_('Allow KYC Re-submission'),
+		help_text=_("Allows User to resubmit KYC application if the previous attempt failed. This can only be done a number of times"))
+
+	number_of_kyc_tries = models.PositiveIntegerField(
+		default=1,
+		verbose_name=_('Allow KYC tries'),
+		help_text=_("Number of times a user is allowed to attempt KYC application"))
+
+	run_check_on_expiry = models.BooleanField(
+		default=False,
+		verbose_name=_('Run check on Expiry'),
+		help_text=_("Automated checks to find out if a user's ID has expired"))
+
+	days_to_send_notification = models.PositiveIntegerField(
+		default=30,
+		verbose_name=_('Verification Notification'),
+		help_text=_("If run check on expiry is turned on, indicate the number of days which the client receives a reminder of ID expiration and request for re-verification"))
+
+	review_frequency = models.PositiveIntegerField(
+		default=30,
+		verbose_name=_('Review Frequency'),
+		help_text=_("The amount of time on which a User must be reviewed"))
+
+	kyc_system_type = models.CharField(
+		choices=KYC_SYSTEM_TYPE,
+		default=AUTOMATIC,
+		verbose_name=_('KYC System Type'),
+		max_length=10,
+		help_text=_("Type of KYC system the User prefers to use"))
+
+
+	class Meta:
+
+		verbose_name = _('KYC Setting')
+		verbose_name_plural = _('KYC Settings')
+
+	def __str__(self):
+		return 'KYC Setting'
+
+
