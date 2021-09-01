@@ -6,7 +6,8 @@ from p2p_lend.users.models import User, UserAddress
 from locations.models import Country, State, City
 from django.utils import timezone
 from datetime import datetime
-from solo.models import SingletonModel
+from solo.models import SingletonModel #A singleton is a model that has only a single row(a single instance of itself). They can be used for managing global settings for an instance
+#Singleton models only saves one instance of itself so whenever we add new changes it overwrites the previous one
 
 
 
@@ -37,19 +38,16 @@ class KYCApplication(BaseModel):
 		blank=True,
 		help_text=_("User's primary email address"))
 
-	address_line_1 = models.ForeignKey(
-		UserAddress,
-		on_delete=models.PROTECT,
+	address_line_1 = models.CharField(
+        max_length=125,
 		verbose_name=_('Address line 1'),
 		help_text=_("User's address line 1. Must be located in the user's country of residence indicated at the time of registration")
 		)
 
-	address_line_2 = models.ForeignKey(
-		UserAddress,
-		on_delete=models.PROTECT,
+	address_line_2 = models.CharField(
+        max_length=125,
 		verbose_name=_('Address line 2'),
 		blank=True, null=True,
-		related_name='+',
 		help_text=_("User's address line 2. Must be located in the user's country of residence indicated at the time of registration")
 		)
 
@@ -183,21 +181,6 @@ class KYCApplication(BaseModel):
 	# 	help_text=_('Auto generated refernce for KYC application. A transaction reference number helps to identify transactions in records and used to monitor transactions associuated with a card payment')
 	# 	)
 
-	us_citizen_tax_resident = models.BooleanField(
-		default=False,
-		verbose_name=_('US citizen tax resident'),
-		help_text=_("Indicates whether the user is a citizen/tax resident of the US or not"))
-
-	accept_terms = models.BooleanField(
-		default=False,
-		verbose_name=_('Accept terms'),
-		help_text=_("Agreement collected from the user to accept the terms and conditions"))
-
-	agreed_to_data_usage = models.BooleanField(
-		default=False,
-		verbose_name=_('Agreed to data usage'),
-		help_text=_("Agreement collected from the user to gain consent to use their provided data"))
-
 
 	citizenship = models.ForeignKey(
 		Country,
@@ -269,6 +252,22 @@ class KYCApplication(BaseModel):
 		help_text=_("The reason for the refusal")
 		)
 
+	us_citizen_tax_resident = models.BooleanField(
+		default=False,
+		verbose_name=_('US citizen tax resident'),
+		help_text=_("Indicates whether the user is a citizen/tax resident of the US or not"))
+
+	accept_terms = models.BooleanField(
+		default=False,
+		verbose_name=_('Accept terms'),
+		help_text=_("Agreement collected from the user to accept the terms and conditions"))
+
+	agreed_to_data_usage = models.BooleanField(
+		default=False,
+		verbose_name=_('Agree to data usage'),
+		help_text=_("Agreement collected from the user to gain consent to use their provided data"))
+
+	
 	class Meta:
 		verbose_name = _('KYC Application')
 		verbose_name_plural = _('KYC Applications')

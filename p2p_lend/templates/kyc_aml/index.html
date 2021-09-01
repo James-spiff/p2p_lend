@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Welcome to the KYC verification</h2>
+
+<p>This is a regulatory requirement needed before you can use the platform</p>
+
+<a href="{% url 'kyc_submit' %}">Click here to start your verification</a>
+{% endblock %}

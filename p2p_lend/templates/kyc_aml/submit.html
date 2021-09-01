@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Submit KYC Application</h2>
+
+<p>Note: Information submitted can't be submitted after completion</p>
+
+<form action="{% url 'kyc_submit' %}" method="post">
+	{% csrf_token %}
+	{{ form.as_table }}
+	<button type="submit">Complete KYC Verification</button>
+</form>
+
+
+{% endblock %}
